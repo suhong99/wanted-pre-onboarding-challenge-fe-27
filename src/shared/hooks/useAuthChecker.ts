@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { PROTECTED_ROUTES } from '../const/route';
+import { PROTECTED_ROUTES } from '../const/auth';
 
 export const useAuthChecker = () => {
   const navigate = useNavigate();
