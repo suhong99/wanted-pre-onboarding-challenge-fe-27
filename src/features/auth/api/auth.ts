@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { BASE_URL } from '../../../shared/const/auth';
 
-interface LoginResponse {
+interface AuthResponse {
   message: string;
   token: string;
 }
 
-interface LoginParams {
+interface AuthParams {
   email: string;
   password: string;
 }
@@ -14,22 +14,52 @@ interface LoginParams {
 export const login = async ({
   email,
   password,
-}: LoginParams): Promise<LoginResponse | null> => {
+}: AuthParams): Promise<boolean> => {
   try {
-    const response = await axios.post<LoginResponse>(
-      `${BASE_URL}/users/login`,
+    const response = await axios.post<AuthResponse>(`${BASE_URL}/users/login`, {
+      email,
+      password,
+    });
+
+    alert(response.data.message);
+    localStorage.setItem('auth', response.data.token);
+
+    return true;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error('Login failed:', error.response.data);
+      alert(error.response.data.details);
+    } else {
+      console.error('An unexpected error occurred:', error);
+    }
+    return false;
+  }
+};
+
+export const signUp = async ({
+  email,
+  password,
+}: AuthParams): Promise<boolean> => {
+  try {
+    const response = await axios.post<AuthResponse>(
+      `${BASE_URL}/users/create`,
       {
         email,
         password,
       }
     );
-    return response.data;
+
+    alert(response.data.message);
+    localStorage.setItem('auth', response.data.token);
+
+    return true;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      console.error('Login failed:', error.response.data);
+      console.error('SignUp failed:', error.response.data);
+      alert(error.response.data.details);
     } else {
       console.error('An unexpected error occurred:', error);
     }
-    return null;
+    return false;
   }
 };

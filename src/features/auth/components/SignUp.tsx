@@ -1,24 +1,25 @@
 import { useState } from 'react';
 import AuthInput from '../../../shared/components/AuthInput';
 import Button from '../../../shared/components/Button';
-import { login } from '../api/auth';
+import { signUp } from '../api/auth';
 import { useNavigate } from 'react-router';
 import { URL_CONST } from '../../../shared/const/url';
 import { isEmailValid, isPasswoardValid } from '../utils/auth';
 
-const SignIn = () => {
+const SignUp = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const isFormValid = isEmailValid(email) && isPasswoardValid(password);
 
-  const handleLogin = async () => {
-    const isSuccess = await login({ email, password });
+  const handleSignUp = async () => {
+    const isSuccess = await signUp({ email, password });
     if (isSuccess) {
       navigate(URL_CONST.home);
     }
   };
+
   return (
     <div className="auth-form">
       <AuthInput
@@ -33,15 +34,15 @@ const SignIn = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button label="로그인" onClick={handleLogin} disabled={!isFormValid} />
+      <Button label="가입하기" onClick={handleSignUp} disabled={!isFormValid} />
       <Button
-        label="회원가입"
+        label="로그인으로"
         onClick={() => {
-          navigate(URL_CONST.signup);
+          navigate(URL_CONST.auth);
         }}
       />
     </div>
   );
 };
 
-export default SignIn;
+export default SignUp;
