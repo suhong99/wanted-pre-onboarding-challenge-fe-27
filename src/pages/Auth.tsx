@@ -1,6 +1,6 @@
 import SignIn from '../features/auth/components/SignIn';
 
-const Auth = () => {
+const AuthPage = () => {
   return (
     <div>
       로그인 페이지
@@ -9,4 +9,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default AuthPage;
