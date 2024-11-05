@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from '../../../shared/const/auth';
+import { BASE_URL, STORAGE_KEY } from '../../../shared/const/auth';
 
 interface AuthResponse {
   message: string;
@@ -22,7 +22,7 @@ export const login = async ({
     });
 
     alert(response.data.message);
-    localStorage.setItem('auth', response.data.token);
+    localStorage.setItem(STORAGE_KEY.token, response.data.token);
 
     return true;
   } catch (error) {
@@ -50,7 +50,7 @@ export const signUp = async ({
     );
 
     alert(response.data.message);
-    localStorage.setItem('auth', response.data.token);
+    localStorage.setItem(STORAGE_KEY.token, response.data.token);
 
     return true;
   } catch (error) {
