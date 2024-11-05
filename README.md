@@ -2,6 +2,7 @@
 
 과제 관련 링크 : https://github.com/starkoora/wanted-pre-onboarding-challenge-fe-1-api?tab=readme-ov-file
 
+현재상황 : 러프하게 완성 UI 작업은,, 토요일 시험이 있어서 천천히 하겠습니다. query 부분 관심사 분리도 조금식 진행할듯요
 ## Assignment 1 - Login / SignUp
 
 - /auth 경로에 로그인 / 회원가입 기능을 개발합니다
