@@ -4,6 +4,8 @@ import RootLayout from '../shared/layout';
 import TodoPage from '../pages/TodoPage';
 import AuthPage from '../pages/Auth';
 import SignUpPage from '../pages/SignUp';
+import TodoDetailPage from '../pages/TodoDetailPage';
+import CreateTodoPage from '../pages/CreateTodoPage';
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +15,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <TodoPage />,
+      },
+      {
+        path: 'detail/:id',
+        element: <TodoDetailPage />,
+      },
+      {
+        path: 'create',
+        element: <CreateTodoPage />,
       },
       {
         path: 'auth',
