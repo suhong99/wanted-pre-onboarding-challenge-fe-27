@@ -26,7 +26,7 @@ const TodoPage = () => {
               </td>
             </tr>
           ) : (
-            data.data.map(({ id, title, createdAt, updatedAt }) => (
+            data.data.map(({ id, title, createdAt, updatedAt, priority }) => (
               <tr
                 key={id}
                 style={{ cursor: 'pointer' }}
@@ -35,7 +35,7 @@ const TodoPage = () => {
                 <td>{title}</td>
                 <td>{new Date(createdAt).toLocaleString()}</td>
                 <td>{new Date(updatedAt).toLocaleString()}</td>
-                <td></td>
+                <td>우선순위 : {priority}</td>
               </tr>
             ))
           )}
