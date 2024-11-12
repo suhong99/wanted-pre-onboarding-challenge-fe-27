@@ -13,6 +13,7 @@ const CreateTodoPage = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: createTodo,
     onSuccess: () => {
+      alert(`생성완료 ${title}, ${content}, ${priority}`);
       setTitle('');
       setContent('');
       setPriority('상');
