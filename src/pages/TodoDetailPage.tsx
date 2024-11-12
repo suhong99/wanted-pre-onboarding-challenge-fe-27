@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getTodo, updateTodo, deleteTodo } from '../features/todo/api/todo'; // API 요청 함수
 import { QUERY_KEY } from '../shared/const/query';
+import { Priority } from '../features/todo/const/type';
+import { PRIORITY_OPTIONS } from '../features/todo/const/const';
 
 const TodoDetailPage = () => {
   const { id } = useParams<{ id: string }>(); // URL 파라미터에서 ID를 가져옵니다.
@@ -17,6 +19,7 @@ const TodoDetailPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [priority, setPriority] = useState<Priority>('상');
 
   const mutationUpdate = useMutation({
     mutationFn: updateTodo,
@@ -88,7 +91,12 @@ const TodoDetailPage = () => {
                 >
                   <button
                     onClick={() => {
-                      mutationUpdate.mutate({ id: id!, title, content });
+                      mutationUpdate.mutate({
+                        id: id!,
+                        title,
+                        content,
+                        priority,
+                      });
                     }}
                   >
                     수정 완료
@@ -127,6 +135,21 @@ const TodoDetailPage = () => {
                   >
                     {data.data.content}
                   </div>
+                </div>
+                <div>
+                  <label>Priority:</label>
+                  {PRIORITY_OPTIONS.map((option) => (
+                    <label key={option}>
+                      <input
+                        type="radio"
+                        name="priority"
+                        value={option}
+                        checked={priority === option}
+                        onChange={() => setPriority(option)}
+                      />
+                      {option}
+                    </label>
+                  ))}
                 </div>
                 <div
                   style={{ display: 'flex', gap: '10px', marginTop: '10px' }}

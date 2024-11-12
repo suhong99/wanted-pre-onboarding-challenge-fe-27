@@ -1,25 +1,12 @@
 import api from '../../../shared/apies/axiosInstance';
-
-interface Todo {
-  title: string;
-  content: string;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface GetTodosResponse {
-  data: Todo[];
-}
-
-interface CreateTodoParams {
-  title: string;
-  content: string;
-}
-
-interface TodoResponse {
-  data: Todo;
-}
+import { engPriority } from '../const/const';
+import {
+  CreateTodoParams,
+  GetTodosResponse,
+  Priority,
+  Todo,
+  TodoResponse,
+} from '../const/type';
 
 export const getTodos = async (): Promise<GetTodosResponse> => {
   const response = await api.get<GetTodosResponse>('/todos');
@@ -48,14 +35,16 @@ export const updateTodo = async ({
   id,
   title,
   content,
+  priority,
 }: {
   id: string;
   title: string;
   content: string;
+  priority: Priority;
 }): Promise<TodoResponse> => {
   const response = await api.put<{
     data: Todo;
-  }>('/todos/' + id, { title, content });
+  }>('/todos/' + id, { title, content, priority: engPriority[priority] });
   return response.data;
 };
 
