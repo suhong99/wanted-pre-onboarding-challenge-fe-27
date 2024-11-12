@@ -8,15 +8,30 @@ import {
   TodoResponse,
 } from '../const/type';
 
-export const getTodos = async (): Promise<GetTodosResponse> => {
-  const response = await api.get<GetTodosResponse>('/todos');
+interface GetTodosParams {
+  priorityFilter?: 'urgent' | 'normal' | 'low' | '';
+  keyword?: string;
+  sort?: 'createdAt' | 'updatedAt' | 'priority';
+  order?: 'asc' | 'desc';
+  countOnly?: boolean;
+}
+
+export const getTodos = async (
+  params: GetTodosParams = {}
+): Promise<GetTodosResponse> => {
+  console.log(params);
+  const response = await api.get<GetTodosResponse>('/todos', { params });
+  console.log(response.data);
   return response.data;
 };
 
 export const createTodo = async (
   params: CreateTodoParams
 ): Promise<TodoResponse> => {
-  const response = await api.post<TodoResponse>('/todos', params);
+  const response = await api.post<TodoResponse>('/todos', {
+    ...params,
+    priority: engPriority[params.priority],
+  });
   return response.data;
 };
 
