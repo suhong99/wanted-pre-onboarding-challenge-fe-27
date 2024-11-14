@@ -6,11 +6,13 @@ import AuthPage from '../pages/Auth';
 import SignUpPage from '../pages/SignUp';
 import TodoDetailPage from '../pages/TodoDetailPage';
 import CreateTodoPage from '../pages/CreateTodoPage';
+import { authLoader } from '../features/todo/api/loader';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    loader: authLoader,
     children: [
       {
         index: true,
