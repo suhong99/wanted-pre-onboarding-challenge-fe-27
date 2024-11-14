@@ -13,8 +13,6 @@ const TodoPage = () => {
     'createdAt'
   );
   const [order, setOrder] = useState<'asc' | 'desc'>('desc');
-
-  // Fetch todos with the selected filters
   const { data } = useQuery({
     queryKey: [QUERY_KEY.todos, priorityFilter, keyword, sort, order],
     queryFn: () => getTodos({ priorityFilter, keyword, sort, order }),

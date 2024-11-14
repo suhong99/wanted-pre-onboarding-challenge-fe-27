@@ -1,5 +1,6 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
-import { BASE_URL, STORAGE_KEY } from '../const/auth';
+import { BASE_URL } from '../const/url';
+import { STORAGE_KEY } from '../const/storage';
 
 const api = axios.create({
   baseURL: `${BASE_URL}`,

@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { BASE_URL, STORAGE_KEY } from '../../../shared/const/auth';
+import { STORAGE_KEY } from '../../../shared/const/storage';
+import { BASE_URL } from '../../../shared/const/url';
 
 interface AuthResponse {
   message: string;
