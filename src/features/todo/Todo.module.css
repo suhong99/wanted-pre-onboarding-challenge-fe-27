@@ -1,0 +1,52 @@
+.todo_page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.todo_header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.todo_filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo_filter_input,
+.todo_filter_select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.todo_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.todo_table th,
+.todo_table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.todo_table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.todo_table tr:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.todo_no_data {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}

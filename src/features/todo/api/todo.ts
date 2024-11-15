@@ -1,15 +1,16 @@
 import api from '../../../shared/apies/axiosInstance';
-import { engPriority } from '../const/const';
+import { PRIORITY_MAP } from '../const/const';
 import {
   CreateTodoParams,
   GetTodosResponse,
   Priority,
+  PriorityLabel,
   Todo,
   TodoResponse,
 } from '../const/type';
 
 interface GetTodosParams {
-  priorityFilter?: 'urgent' | 'normal' | 'low' | '';
+  priorityFilter?: Priority;
   keyword?: string;
   sort?: 'createdAt' | 'updatedAt' | 'priority';
   order?: 'asc' | 'desc';
@@ -30,7 +31,7 @@ export const createTodo = async (
 ): Promise<TodoResponse> => {
   const response = await api.post<TodoResponse>('/todos', {
     ...params,
-    priority: engPriority[params.priority],
+    priority: PRIORITY_MAP[params.priority],
   });
   return response.data;
 };
@@ -55,11 +56,11 @@ export const updateTodo = async ({
   id: string;
   title: string;
   content: string;
-  priority: Priority;
+  priority: PriorityLabel;
 }): Promise<TodoResponse> => {
   const response = await api.put<{
     data: Todo;
-  }>('/todos/' + id, { title, content, priority: engPriority[priority] });
+  }>('/todos/' + id, { title, content, priority: PRIORITY_MAP[priority] });
   return response.data;
 };
 

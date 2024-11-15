@@ -1,13 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { createTodo } from '../features/todo/api/todo';
-import { Priority } from '../features/todo/const/type';
+import { PriorityLabel } from '../features/todo/const/type';
 import { PRIORITY_OPTIONS } from '../features/todo/const/const';
 
 const CreateTodoPage = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [priority, setPriority] = useState<Priority>('상');
+  const [priority, setPriority] = useState<PriorityLabel>('상');
 
   // useMutation 정의
   const { mutate, isPending } = useMutation({

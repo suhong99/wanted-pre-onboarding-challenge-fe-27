@@ -4,21 +4,24 @@ export interface Todo {
   id: string;
   createdAt: string;
   updatedAt: string;
-  priority: Priority;
+  priority: PriorityLabel;
 }
 
 export interface GetTodosResponse {
   data: Todo[];
 }
 
+export type Priority = 'urgent' | 'normal' | 'low' | '';
+export type PriorityLabel = '상' | '중' | '하' | '';
+export type SortOption = 'createdAt' | 'updatedAt' | 'priority';
+export type OrderOption = 'asc' | 'desc';
+
 export interface CreateTodoParams {
   title: string;
   content: string;
-  priority: Priority;
+  priority: PriorityLabel;
 }
 
 export interface TodoResponse {
   data: Todo;
 }
-
-export type Priority = '상' | '중' | '하';
